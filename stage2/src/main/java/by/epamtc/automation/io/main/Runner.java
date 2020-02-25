@@ -10,9 +10,7 @@ public class Runner {
     public static final String FILE_PREFIX = "|      ";
 
     public static void main(String[] args) {
-
-        //String directoryPath = "data\\Nirvana";
-        //String filePath = "data/mainTask.txt";
+        
         File file = new File(args[0]);
 
         if(file.exists() && file.isDirectory()) {
