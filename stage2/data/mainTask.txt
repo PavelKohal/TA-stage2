@@ -1,0 +1,19 @@
+Nirvana
+  |------1111 - test
+      |------in_test1
+      |      testfile1.txt
+      |------in_test2
+      |      testfile2.txt
+  |      testfile3.txt
+  |      testfile4.txt
+  |------1992 - Hormoaning [EP]
+  |      01 - Turnaround.mp3
+  |      02 - Aneurysm.mp3
+  |      03 - D-7.mp3
+  |      04 - Son of a Gun.mp3
+  |      05 - Even in His Youth.mp3
+  |      06 - Molly's Lips.mp3
+  |------1994 -  Heart-Shaped Box [SINGLE]
+  |      01 - Heart-Shaped Box (LP Version).mp3
+  |      02 - Milk It (LP Version).mp3
+  |      03 - Marigold (Previously Unreleased).mp3
