@@ -6,8 +6,8 @@ import java.util.List;
 
 public class Runner {
 
-    static String directoryPrefix = "|------";
-    static String filePrefix = "|      ";
+    public static final String DIRECTORY_PREFIX = "|------";
+    public static final String FILE_PREFIX = "|      ";
 
     public static void main(String[] args) {
 
@@ -22,7 +22,7 @@ public class Runner {
                 e.printStackTrace();
             }
         } else if(file.exists() && file.isFile()) {
-//            treatFileAsFile(directoryPath);
+            treatFileAsFile(filePath);
         } else {
             System.out.println("Указан неверный путь к файлу либо директории!");
         }
@@ -39,7 +39,7 @@ public class Runner {
         }
 
         if (indentationLevel > 0) {
-            startingIndentationForDirectories = startingIndentation + directoryPrefix;
+            startingIndentationForDirectories = startingIndentation + DIRECTORY_PREFIX;
         }
         writer.write(startingIndentationForDirectories + sourceDirectory.getName());
         writer.newLine();
@@ -51,7 +51,7 @@ public class Runner {
         }
         for(File file: files) {
             if(file.isFile()) {
-                writer.write(startingIndentation + filePrefix + file.getName());
+                writer.write(startingIndentation + FILE_PREFIX + file.getName());
                 writer.newLine();
             }
         }
@@ -62,19 +62,18 @@ public class Runner {
         int fileCounter = 0;
         int folderCounter = 0;
         for(int i = 0; i < stringLines.size(); i++) {
-            if(stringLines.get(i).contains(directoryPrefix)) {
+            if(stringLines.get(i).contains(DIRECTORY_PREFIX)) {
                 folderCounter++;
-            } else if(stringLines.get(i).contains(filePrefix)) {
+            } else if(stringLines.get(i).contains(FILE_PREFIX)) {
                 fileCounter++;
             }
         }
         System.out.printf("Number of folders: %d\n", folderCounter);
         System.out.printf("Number of files: %d\n", fileCounter);
         System.out.printf("Average file name length: %f\n", findAverageFileNameLength(stringLines));
-        System.out.printf("Average number of files in a folder: %f\n", fileCounter/folderCounter);
+        System.out.printf("Average number of files in a folder: %f\n", (double)fileCounter/folderCounter);
     }
 
-    //метод, который преобразует исходный текстовый файл в лист строк
     public static List<String> convertFileToStringList(String pathToFile) {
         List<String> stringLines = new ArrayList<>();
         try(BufferedReader reader = new BufferedReader(new FileReader(pathToFile))) {
@@ -87,15 +86,14 @@ public class Runner {
         }
         return stringLines;
     }
-
-    //метод расчитывает среднюю длину имен файлов
+    
     public static double findAverageFileNameLength(List <String> stringLines) {
         int fileCounter = 0;
         int sumLengthFileNames = 0;
         for(int i = 0; i < stringLines.size(); i++) {
-            if(stringLines.get(i).contains(filePrefix)) {
+            if(stringLines.get(i).contains(FILE_PREFIX)) {
                 fileCounter++;
-                sumLengthFileNames += stringLines.get(i).trim().replace(filePrefix, "").length();
+                sumLengthFileNames += stringLines.get(i).trim().replace(FILE_PREFIX, "").length();
             }
         }
         return (double)sumLengthFileNames/fileCounter;
