@@ -11,20 +11,20 @@ public class Runner {
 
     public static void main(String[] args) {
 
-        String directoryPath = "D:\\instal\\Nirvana";
-        String filePath = "data/mainTask.txt";
-        File file = new File(directoryPath);
+        //String directoryPath = "data\\Nirvana";
+        //String filePath = "data/mainTask.txt";
+        File file = new File(args[0]);
 
         if(file.exists() && file.isDirectory()) {
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(args[0]))) {
                 treatFileAsDirectory(file, 0, writer);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else if(file.exists() && file.isFile()) {
-            treatFileAsFile(filePath);
+            treatFileAsFile(args[0]);
         } else {
-            System.out.println("Указан неверный путь к файлу либо директории!");
+            System.out.println("The path to the file or directory is specified!");
         }
     }
 
@@ -86,7 +86,7 @@ public class Runner {
         }
         return stringLines;
     }
-    
+
     public static double findAverageFileNameLength(List <String> stringLines) {
         int fileCounter = 0;
         int sumLengthFileNames = 0;
