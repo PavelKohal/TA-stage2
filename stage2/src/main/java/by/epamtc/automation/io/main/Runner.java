@@ -10,11 +10,11 @@ public class Runner {
     public static final String FILE_PREFIX = "|      ";
 
     public static void main(String[] args) {
-        
+
         File file = new File(args[0]);
 
         if(file.exists() && file.isDirectory()) {
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(args[0]))) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter("data/mainTask.txt"))) {
                 treatFileAsDirectory(file, 0, writer);
             } catch (IOException e) {
                 e.printStackTrace();
