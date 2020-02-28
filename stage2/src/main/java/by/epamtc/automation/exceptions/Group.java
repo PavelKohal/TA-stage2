@@ -2,6 +2,7 @@ package by.epamtc.automation.exceptions;
 
 import by.epamtc.automation.exceptions.customexceptions.*;
 import by.epamtc.automation.exceptions.enums.*;
+
 import java.util.*;
 
 public class Group {
@@ -31,8 +32,8 @@ public class Group {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if(this == o) return true;
+        if(o == null || getClass() != o.getClass()) return false;
         Group group = (Group) o;
         return groupName == group.groupName &&
                 Objects.equals(students, group.students);

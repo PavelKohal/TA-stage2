@@ -2,6 +2,7 @@ package by.epamtc.automation.exceptions;
 
 import by.epamtc.automation.exceptions.customexceptions.*;
 import by.epamtc.automation.exceptions.enums.*;
+
 import java.util.*;
 
 public class Faculty {
@@ -25,14 +26,14 @@ public class Faculty {
         return groups;
     }
 
-    public void addGroupsToFaculties (Group group) {
+    public void addGroupsToFaculties(Group group) {
         groups.add(group);
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if(this == o) return true;
+        if(o == null || getClass() != o.getClass()) return false;
         Faculty faculty = (Faculty) o;
         return facultyName == faculty.facultyName &&
                 Objects.equals(groups, faculty.groups);

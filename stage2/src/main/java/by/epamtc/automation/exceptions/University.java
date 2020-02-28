@@ -2,6 +2,7 @@ package by.epamtc.automation.exceptions;
 
 import by.epamtc.automation.exceptions.customexceptions.*;
 import by.epamtc.automation.exceptions.enums.*;
+
 import java.util.*;
 
 public class University {
@@ -28,17 +29,17 @@ public class University {
 
         int counter = 0;
         double sum = 0;
-        for (Faculty faculty : getFaculties()) {
-            for (Group group : faculty.getGroups()) {
-                for (Student student : group.getStudents()) {
-                    if (student.getRecordBook().containsKey(subjectName)) {
+        for(Faculty faculty : getFaculties()) {
+            for(Group group : faculty.getGroups()) {
+                for(Student student : group.getStudents()) {
+                    if(student.getRecordBook().containsKey(subjectName)) {
                         counter++;
                         sum += student.getRecordBook().get(subjectName);
                     }
                 }
             }
         }
-        return sum/counter;
+        return sum / counter;
     }
 
     public double findAverageGradeAtFaculty(SubjectList subjectName, FacultyList facultyName) throws StudentHasNoSubjectsException,
@@ -46,11 +47,11 @@ public class University {
 
         int counter = 0;
         double sum = 0;
-        for (Faculty faculty : getFaculties()) {
-            if (faculty.getFacultyName().equals(facultyName)) {
-                for (Group group : faculty.getGroups()) {
-                    for (Student student : group.getStudents()) {
-                        if (student.getRecordBook().containsKey(subjectName)) {
+        for(Faculty faculty : getFaculties()) {
+            if(faculty.getFacultyName().equals(facultyName)) {
+                for(Group group : faculty.getGroups()) {
+                    for(Student student : group.getStudents()) {
+                        if(student.getRecordBook().containsKey(subjectName)) {
                             counter++;
                             sum += student.getRecordBook().get(subjectName);
                         }
@@ -58,7 +59,7 @@ public class University {
                 }
             }
         }
-        return sum/counter;
+        return sum / counter;
     }
 
     public double findAverageGradeAtGroup(SubjectList subjectName, GroupList groupName) throws StudentHasNoSubjectsException,
@@ -66,11 +67,11 @@ public class University {
 
         int counter = 0;
         double sum = 0;
-        for (Faculty faculty : getFaculties()) {
-            for (Group group : faculty.getGroups()) {
-                if (group.getGroupName().equals(groupName)) {
-                    for (Student student : group.getStudents()) {
-                        if (student.getRecordBook().containsKey(subjectName)) {
+        for(Faculty faculty : getFaculties()) {
+            for(Group group : faculty.getGroups()) {
+                if(group.getGroupName().equals(groupName)) {
+                    for(Student student : group.getStudents()) {
+                        if(student.getRecordBook().containsKey(subjectName)) {
                             counter++;
                             sum += student.getRecordBook().get(subjectName);
                         }
@@ -78,34 +79,34 @@ public class University {
                 }
             }
         }
-        return sum/counter;
+        return sum / counter;
     }
 
     public Student findStudentAmongOthers(String lastName) throws NoStudentsInGroupException,
-            NoGroupsAtFacultyException, NoFacultiesAtUniversityException, NoFacultiesAtUniversityException {
+            NoGroupsAtFacultyException, NoFacultiesAtUniversityException {
 
-        for (Faculty faculty : getFaculties()) {
-            for (Group group : faculty.getGroups()) {
-                for (Student student : group.getStudents()) {
-                    if (student.getLastName().toLowerCase().equals(lastName.toLowerCase())) {
+        for(Faculty faculty : getFaculties()) {
+            for(Group group : faculty.getGroups()) {
+                for(Student student : group.getStudents()) {
+                    if(student.getLastName().toLowerCase().equals(lastName.toLowerCase())) {
                         return student;
                     }
                 }
             }
         }
-        return  null;
+        return null;
     }
 
-    public double findAverageMark(String lastName) throws StudentHasNoSubjectsException, IncorrectMarkException,
+    public double findAverageMark(String lastName) throws StudentHasNoSubjectsException,
             NoFacultiesAtUniversityException, NoGroupsAtFacultyException, NoStudentsInGroupException {
 
         Student student = findStudentAmongOthers(lastName);
         Object[] marksArray = student.getRecordBook().values().toArray();
         double sum = 0;
-        for(int i = 0; i < marksArray.length; i++){
+        for(int i = 0; i < marksArray.length; i++) {
             sum += (Integer) marksArray[i];
         }
-        return sum/marksArray.length;
+        return sum / marksArray.length;
     }
 
     @Override
@@ -117,8 +118,8 @@ public class University {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if(this == o) return true;
+        if(o == null || getClass() != o.getClass()) return false;
         University that = (University) o;
         return Objects.equals(faculties, that.faculties);
     }
