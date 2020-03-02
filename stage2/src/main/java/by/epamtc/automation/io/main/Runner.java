@@ -14,10 +14,10 @@ public class Runner {
         File file = new File(args[0]);
 
         if(file.exists() && file.isDirectory()) {
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter("data/mainTask.txt"))) {
+            try(BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/java/resources/mainTask.txt"))) {
                 treatFileAsDirectory(file, 0, writer);
-            } catch (IOException e) {
-                e.printStackTrace();
+            } catch(IOException e) {
+                System.out.println("Unable to write data to file");
             }
         } else if(file.exists() && file.isFile()) {
             treatFileAsFile(args[0]);
@@ -26,28 +26,34 @@ public class Runner {
         }
     }
 
+    /**
+     * @param sourceDirectory - object of class File representing the source directory
+     * @param indentationLevel - number of folder nesting levels(also the number of recursion cycles)
+     * @param writer - object of class BufferedWriter writing to a file
+     */
+
     public static void treatFileAsDirectory(File sourceDirectory, int indentationLevel, BufferedWriter writer) throws IOException {
         File[] files = sourceDirectory.listFiles();
         String startingIndentationForDirectories = "";
         String startingIndentation = "  ";
         String growIndentPerIteration = "    ";
 
-        for (int i = 0; i < indentationLevel - 1; i++) {
+        for(int i = 0; i < indentationLevel - 1; i++) {
             startingIndentation += growIndentPerIteration;
         }
 
-        if (indentationLevel > 0) {
+        if(indentationLevel > 0) {
             startingIndentationForDirectories = startingIndentation + DIRECTORY_PREFIX;
         }
         writer.write(startingIndentationForDirectories + sourceDirectory.getName());
         writer.newLine();
 
-        for(File file: files) {
+        for(File file : files) {
             if(file.isDirectory()) {
                 treatFileAsDirectory(file, indentationLevel + 1, writer);
             }
         }
-        for(File file: files) {
+        for(File file : files) {
             if(file.isFile()) {
                 writer.write(startingIndentation + FILE_PREFIX + file.getName());
                 writer.newLine();
@@ -56,7 +62,7 @@ public class Runner {
     }
 
     public static void treatFileAsFile(String pathToFile) {
-        List <String> stringLines = convertFileToStringList(pathToFile);
+        List<String> stringLines = convertFileToStringList(pathToFile);
         int fileCounter = 0;
         int folderCounter = 0;
         for(int i = 0; i < stringLines.size(); i++) {
@@ -69,23 +75,23 @@ public class Runner {
         System.out.printf("Number of folders: %d\n", folderCounter);
         System.out.printf("Number of files: %d\n", fileCounter);
         System.out.printf("Average file name length: %f\n", findAverageFileNameLength(stringLines));
-        System.out.printf("Average number of files in a folder: %f\n", (double)fileCounter/folderCounter);
+        System.out.printf("Average number of files in a folder: %f\n", (double) fileCounter / folderCounter);
     }
 
     public static List<String> convertFileToStringList(String pathToFile) {
         List<String> stringLines = new ArrayList<>();
         try(BufferedReader reader = new BufferedReader(new FileReader(pathToFile))) {
             String line;
-            while((line = reader.readLine()) != null){
+            while((line = reader.readLine()) != null) {
                 stringLines.add(line);
             }
         } catch(IOException e) {
-            e.printStackTrace();
+            System.out.println("Unable to read file.");;
         }
         return stringLines;
     }
 
-    public static double findAverageFileNameLength(List <String> stringLines) {
+    public static double findAverageFileNameLength(List<String> stringLines) {
         int fileCounter = 0;
         int sumLengthFileNames = 0;
         for(int i = 0; i < stringLines.size(); i++) {
@@ -94,6 +100,6 @@ public class Runner {
                 sumLengthFileNames += stringLines.get(i).trim().replace(FILE_PREFIX, "").length();
             }
         }
-        return (double)sumLengthFileNames/fileCounter;
+        return (double) sumLengthFileNames / fileCounter;
     }
 }
