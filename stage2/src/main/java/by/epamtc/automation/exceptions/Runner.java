@@ -72,8 +72,8 @@ public class Runner {
         mf.addGroupsToFaculties(M102);
 
         University mgup = new University(new ArrayList<>());
-        mgup.addFacultiesToUniversity(ef);
-        mgup.addFacultiesToUniversity(mf);
+        mgup.addFacultyToUniversity(ef);
+        mgup.addFacultyToUniversity(mf);
 
         System.out.printf("Ivanov's average score is %.1f\n", mgup.findAverageMark("Ivanov"));
         System.out.printf("The average score of M102 group in English is %.1f\n",

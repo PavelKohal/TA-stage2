@@ -20,7 +20,7 @@ public class University {
         return faculties;
     }
 
-    public void addFacultiesToUniversity(Faculty faculty) {
+    public void addFacultyToUniversity(Faculty faculty) {
         faculties.add(faculty);
     }
 

@@ -4,8 +4,10 @@ import java.util.concurrent.Semaphore;
 
 public class Runner {
 
+    private static final int NUMBER_OF_RUNWAYS = 5;
+
     public static void main(String[] args) {
-        Semaphore semaphore = new Semaphore(5);
+        Semaphore semaphore = new Semaphore(NUMBER_OF_RUNWAYS);
         new Airplane(semaphore, "Boeing-737 - 0896").start();
         new Airplane(semaphore, "Boeing-747 - 0711").start();
         new Airplane(semaphore, "Airbus-A380 - 1122").start();
