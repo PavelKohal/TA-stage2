@@ -16,7 +16,6 @@ public class Car extends Thread {
 
     public void run() {
         System.out.println(carModel + " прибыл на паркинг и ищет свободное место...");
-
         try {
             if(semaphore.tryAcquire(MAX_WAITING_TIME, TimeUnit.SECONDS)) {
                 System.out.println(carModel + " паркуется на найденном свободном месте...");
