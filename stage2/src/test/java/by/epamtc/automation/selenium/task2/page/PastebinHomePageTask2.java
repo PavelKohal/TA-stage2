@@ -19,12 +19,12 @@ public class PastebinHomePageTask2 {
     }
 
     private static final String HOME_PAGE_URL = "https://pastebin.com";
-    private static final String PASTE_BODY = "git config --global user.name  \"New Sheriff in Town\"\n" +
-                                            "git reset $(git commit-tree HEAD^{tree} -m \"Legacy code\")\n" +
-                                            "git push origin master --force";
-    private static final String PASTE_FORMAT = "Bash";
+    public static final String PASTE_BODY = "git config --global user.name  \"New Sheriff in Town\"\n" +
+            "git reset $(git commit-tree HEAD^{tree} -m \"Legacy code\")\n" +
+            "git push origin master --force";
+    public static final String PASTE_FORMAT = "Bash";
     private static final String EXPIRATION_TIME = "10 Minutes";
-    private static final String PASTE_TITLE = "how to gain dominance among developers";
+    public static final String PASTE_TITLE = "how to gain dominance among developers";
 
     @FindBy(id = "paste_code")
     WebElement codeInputArea;
@@ -44,12 +44,12 @@ public class PastebinHomePageTask2 {
     public PastebinHomePageTask2 openHomePage() {
         driver.get(HOME_PAGE_URL);
         new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.id("paste_code")));
-        return  this;
+        return this;
     }
 
     public PastebinHomePageTask2 enterBodyOfNewPaste() {
         codeInputArea.sendKeys(PASTE_BODY);
-        return  this;
+        return this;
     }
 
     public PastebinHomePageTask2 selectSyntaxHighlighting() {

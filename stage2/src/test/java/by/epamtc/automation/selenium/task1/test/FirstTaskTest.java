@@ -20,16 +20,14 @@ public class FirstTaskTest {
 
     @Test
     public void createNewPaste() {
-
-        String expectedNoteAboutNewPaste = new PastebinHomePage(driver).
-                openHomePage().
-                enterBodyOfNewPaste().
-                selectPasteInspiration().
-                enterPasteName().
-                createNewPaste().
-                getSuccessfulCreationMessage();
-
-        Assert.assertTrue(expectedNoteAboutNewPaste.contains(EXPECTED_MESSAGE), "No new paste created");
+        String expectedNoteAboutNewPaste = new PastebinHomePage(driver)
+                .openHomePage()
+                .enterBodyOfNewPaste()
+                .selectPasteInspiration()
+                .enterPasteName()
+                .createNewPaste()
+                .getSuccessfulCreationMessage();
+        Assert.assertTrue(expectedNoteAboutNewPaste.contains(EXPECTED_MESSAGE), "No new paste created.");
     }
 
     @AfterMethod(alwaysRun = true)

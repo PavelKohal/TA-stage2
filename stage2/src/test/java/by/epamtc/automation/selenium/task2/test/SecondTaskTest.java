@@ -1,7 +1,5 @@
 package by.epamtc.automation.selenium.task2.test;
 
-import by.epamtc.automation.selenium.task1.page.PastebinCreationResultPage;
-import by.epamtc.automation.selenium.task1.page.PastebinHomePage;
 import by.epamtc.automation.selenium.task2.page.PastebinCreationResultPageTask2;
 import by.epamtc.automation.selenium.task2.page.PastebinHomePageTask2;
 import org.openqa.selenium.WebDriver;
@@ -10,6 +8,8 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import static by.epamtc.automation.selenium.task2.page.PastebinHomePageTask2.*;
 
 public class SecondTaskTest {
 
@@ -26,14 +26,21 @@ public class SecondTaskTest {
                 selectPasteInspiration().
                 enterPasteName().
                 createNewPaste();
-        Thread.sleep(10000);
     }
 
     @Test
-    public void test1111() { //naming
+    public void browserPageTitleMatching() {
+        Assert.assertTrue(resultPage.findPageTitleText().equals(PASTE_TITLE));
+    }
 
+    @Test
+    public void syntaxHighlightingMatching() {
+        Assert.assertTrue(resultPage.findSyntaxHighlightning().equals(PASTE_FORMAT));
+    }
 
-        Assert.assertTrue(resultPage.equals(null));
+    @Test
+    public void pasteCodeMatching() {
+        Assert.assertTrue(resultPage.findPasteCodeText().equals(PASTE_BODY));
     }
 
     @AfterClass(alwaysRun = true)

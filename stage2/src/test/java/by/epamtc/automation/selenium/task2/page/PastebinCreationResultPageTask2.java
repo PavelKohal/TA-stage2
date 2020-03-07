@@ -20,9 +20,26 @@ public class PastebinCreationResultPageTask2 {
     @FindBy(id = "success")
     WebElement blockDescribingSuccessfulCreation;
 
-//    public PastebinCreationResultPage getSuccessfulCreationMessage() {
-//        new WebDriverWait(driver, 10)
-//                .until(ExpectedConditions.presenceOfElementLocated(By.id("success")));
-//        return this
-//    }
+    @FindBy(xpath = "//*[@class='paste_box_line1']")
+    WebElement resultPageTitle;
+
+    @FindBy(xpath = "//a[@href='/archive/bash']")
+    WebElement codeButton;
+
+    @FindBy(id = "selectable")
+    WebElement resultPasteCode;
+
+    public String findPageTitleText() {
+        new WebDriverWait(driver, 10)
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@class='paste_box_line1']")));
+        return resultPageTitle.getText();
+    }
+
+    public String findSyntaxHighlightning() {
+        return codeButton.getText();
+    }
+
+    public String findPasteCodeText() {
+        return resultPasteCode.getText();
+    }
 }

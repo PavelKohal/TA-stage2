@@ -38,12 +38,12 @@ public class PastebinHomePage {
     public PastebinHomePage openHomePage() {
         driver.get(HOME_PAGE_URL);
         new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.id("paste_code")));
-        return  this;
+        return this;
     }
 
     public PastebinHomePage enterBodyOfNewPaste() {
         codeInputArea.sendKeys(PASTE_BODY);
-        return  this;
+        return this;
     }
 
     public PastebinHomePage selectPasteInspiration() {
