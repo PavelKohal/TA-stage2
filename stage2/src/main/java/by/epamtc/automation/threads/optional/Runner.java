@@ -18,5 +18,6 @@ public class Runner {
         new Airplane(semaphore, "Boeing-787 - 0965").start();
         new Airplane(semaphore, "Airbus-A380 - 0458").start();
         new Airplane(semaphore, "Airbus-A380 - 0985").start();
+        //https://habr.com/ru/post/277669/
     }
 }
