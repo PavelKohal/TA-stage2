@@ -13,8 +13,14 @@ public class ThirdTaskTest {
                 .fillInSearchInputLine()
                 .selectDesiredSearchResult()
                 .fillInNumberOfInstance()
-                .selectOperationSystem();
-
+                .selectOperationSystem()
+                .selectMachineClass()
+                .selectInstanceType()
+                .selectGPUs()
+                .selectLocalSSD()
+                .selectDatacenterLocation()
+                .selectCommittedUsage()
+                .clickAddToEstimateButton();
 
         Thread.sleep(10000);
         driver.quit();
