@@ -17,7 +17,7 @@ public class SecondTaskTest {
     private PastebinCreationResultPageTask2 resultPage;
 
     @BeforeClass(alwaysRun = true)
-    public void createNewPaste() throws InterruptedException {
+    public void createNewPaste() {
         driver = new ChromeDriver();
         resultPage = new PastebinHomePageTask2(driver).
                 openHomePage().

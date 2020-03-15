@@ -1,5 +1,6 @@
-package by.epamtc.automation.selenium.task3.page;
+package by.epamtc.automation.selenium.task4.page;
 
+import by.epamtc.automation.selenium.task3.page.SearchResultsPageTask3;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class GoogleCloudMainPageTask3 {
+public class GoogleCloudMainPageTask4 {
 
     private WebDriver driver;
 
@@ -22,20 +23,20 @@ public class GoogleCloudMainPageTask3 {
     @FindBy(name = "q")
     WebElement searchInputLine;
 
-    public GoogleCloudMainPageTask3(WebDriver driver) {
+    public GoogleCloudMainPageTask4(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
-    public GoogleCloudMainPageTask3 openHomePage() {
+    public GoogleCloudMainPageTask4 openHomePage() {
         driver.get(HOMEPAGE_URL);
         new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(searchButton));
         return this;
     }
 
-    public SearchResultsPageTask3 fillInSearchInputLine() {
+    public SearchResultsPageTask4 fillInSearchInputLine() {
         searchButton.click();
         searchInputLine.sendKeys(REQUEST_TEXT + Keys.ENTER);
-        return new SearchResultsPageTask3(driver);
+        return new SearchResultsPageTask4(driver);
     }
 }
