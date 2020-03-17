@@ -53,16 +53,17 @@ public class CalculatorPageTask4 {
     @FindBy (xpath = "//md-checkbox[@aria-label='Add GPUs']")
     WebElement addGPUChexkbox;
 
-    @FindBy (id = "select_value_label_324")
+    //отсюда не работает
+    @FindBy (id = "select_value_label_326")
     WebElement choiceOfNumberOfGPUs;
 
-    @FindBy (id = "select_option_331")
+    @FindBy (id = "select_option_333")
     WebElement desiredNumberOfGPUs;
 
-    @FindBy (id = "select_value_label_325")
+    @FindBy (id = "select_value_label_327")
     WebElement choiceOfGPUType;
 
-    @FindBy (id = "select_option_338")
+    @FindBy (id = "select_option_340")
     WebElement desiredGPUType;
 
     @FindBy (id = "select_value_label_166")

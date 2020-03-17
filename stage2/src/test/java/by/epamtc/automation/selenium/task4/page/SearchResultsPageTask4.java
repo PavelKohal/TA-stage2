@@ -1,6 +1,5 @@
 package by.epamtc.automation.selenium.task4.page;
 
-import by.epamtc.automation.selenium.task3.page.CalculatorPageTask3;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

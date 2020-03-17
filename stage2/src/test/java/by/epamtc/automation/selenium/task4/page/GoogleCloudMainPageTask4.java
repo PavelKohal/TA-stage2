@@ -1,6 +1,5 @@
 package by.epamtc.automation.selenium.task4.page;
 
-import by.epamtc.automation.selenium.task3.page.SearchResultsPageTask3;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
