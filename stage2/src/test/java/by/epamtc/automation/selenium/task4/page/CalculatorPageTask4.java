@@ -1,6 +1,5 @@
 package by.epamtc.automation.selenium.task4.page;
 
-import by.epamtc.automation.selenium.task3.page.EstimatePageTask3;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,13 +11,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class CalculatorPageTask4 {
 
     WebDriver driver;
+    public static String costOnPage;
+
+    private static final String NUMBER_OF_INSTANCE = "4";
 
     public CalculatorPageTask4(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-
-    private static final String NUMBER_OF_INSTANCE = "4";
 
     @FindBy (xpath = "//*[@id='cloud-site']/devsite-iframe/iframe")
     WebElement firstFrame;
@@ -53,7 +53,6 @@ public class CalculatorPageTask4 {
     @FindBy (xpath = "//md-checkbox[@aria-label='Add GPUs']")
     WebElement addGPUChexkbox;
 
-    //отсюда не работает
     @FindBy (id = "select_value_label_326")
     WebElement choiceOfNumberOfGPUs;
 
@@ -84,12 +83,15 @@ public class CalculatorPageTask4 {
     @FindBy (id = "select_option_87")
     WebElement desiredCommittedUsage;
 
-    @FindBy (xpath = "//button[@aria-label = 'Add to Estimate']")
+    @FindBy (xpath = "//button[@aria-label='Add to Estimate']")
     WebElement buttonAddToEstimate;
+
+    @FindBy (xpath = "//*[@id='resultBlock']//h2[@class='md-title']")
+    WebElement costOnPageDOMElement;
 
     public CalculatorPageTask4 clickComputerEngineButton() {
         driver.switchTo().frame(firstFrame).switchTo().frame(secondFrame);
-        new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(computeEngineButton));
+        new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(computeEngineButton));
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", computeEngineButton);
         return this;
     }
@@ -99,87 +101,39 @@ public class CalculatorPageTask4 {
         return this;
     }
 
-    public CalculatorPageTask4 selectOperationSystem() {
-        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(choiceOfOperationSystem));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", choiceOfOperationSystem);
-        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(desiredOperationSystem));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", desiredOperationSystem);
-        return this;
-    }
-
-    public CalculatorPageTask4 selectMachineClass() {
-        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(choiceOfMachineClass));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", choiceOfMachineClass);
-        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(desiredMachineClass));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", desiredMachineClass);
-        return this;
-    }
-
-    public CalculatorPageTask4 selectInstanceType() {
-        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(choiceOfInstanceType));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", choiceOfInstanceType);
-        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(desiredInstanceType));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", desiredInstanceType);
-        return this;
-    }
-
-    public CalculatorPageTask4 selectGPUs() {
-        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(addGPUChexkbox));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", addGPUChexkbox);
-
-        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(choiceOfNumberOfGPUs));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", choiceOfNumberOfGPUs);
-        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(desiredNumberOfGPUs));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", desiredNumberOfGPUs);
-
-        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(choiceOfGPUType));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", choiceOfGPUType);
-        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(desiredGPUType));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", desiredGPUType);
-        return this;
-    }
-
-    public CalculatorPageTask4 selectLocalSSD() {
-        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(choiceOfLocalSSD));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", choiceOfLocalSSD);
-        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(desiredLocalSSD));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", desiredLocalSSD);
-        return this;
-    }
-
-    public CalculatorPageTask4 selectDatacenterLocation() {
-        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(choiceOfLocation));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", choiceOfLocation);
-        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(desiredLocation));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", desiredLocation);
-        return this;
-    }
-
-    public CalculatorPageTask4 selectCommittedUsage() {
-        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(choiceOfCommittedUsage));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", choiceOfCommittedUsage);
-        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(desiredCommittedUsage));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", desiredCommittedUsage);
-        return this;
-    }
-
-    public EstimatePageTask4 clickAddToEstimateButton() {
-        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(buttonAddToEstimate));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", buttonAddToEstimate);
+    public EstimatePageTask4 fillInRequiredData() {
+        expandSelectionOptionsAndSelectDesired(choiceOfOperationSystem, desiredOperationSystem);
+        expandSelectionOptionsAndSelectDesired(choiceOfMachineClass, desiredMachineClass);
+        expandSelectionOptionsAndSelectDesired(choiceOfInstanceType, desiredInstanceType);
+        clickCheckbox(addGPUChexkbox);
+        expandSelectionOptionsAndSelectDesired(choiceOfNumberOfGPUs, desiredNumberOfGPUs);
+        expandSelectionOptionsAndSelectDesired(choiceOfGPUType, desiredGPUType);
+        expandSelectionOptionsAndSelectDesired(choiceOfLocalSSD, desiredLocalSSD);
+        expandSelectionOptionsAndSelectDesired(choiceOfLocation, desiredLocation);
+        expandSelectionOptionsAndSelectDesired(choiceOfCommittedUsage, desiredCommittedUsage);
+        clickButton(buttonAddToEstimate);
+        costOnPage = new WebDriverWait(driver, 10).until(ExpectedConditions
+                .visibilityOf(costOnPageDOMElement)).getText();
         return new EstimatePageTask4(driver);
     }
 
-    public EstimatePageTask4 fillInCalculatorFields() {
-        clickComputerEngineButton()
-                .fillInNumberOfInstance()
-                .selectOperationSystem()
-                .selectMachineClass()
-                .selectInstanceType()
-                .selectGPUs()
-                .selectLocalSSD()
-                .selectDatacenterLocation()
-                .selectCommittedUsage()
-                .clickAddToEstimateButton();
-        return new EstimatePageTask4(driver);
+    public CalculatorPageTask4 expandSelectionOptionsAndSelectDesired(WebElement choice, WebElement desired) {
+        new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOf(choice));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", choice);
+        new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOf(desired));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", desired);
+        return this;
+    }
+
+    public CalculatorPageTask4 clickCheckbox(WebElement checkbox) {
+        new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOf(checkbox));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", checkbox);
+        return this;
+    }
+
+    public CalculatorPageTask4 clickButton(WebElement button) {
+        new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOf(button));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", button);
+        return this;
     }
 }

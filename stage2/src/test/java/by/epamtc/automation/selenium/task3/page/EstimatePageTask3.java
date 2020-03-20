@@ -17,7 +17,7 @@ public class EstimatePageTask3 {
     }
 
     @FindBy(xpath = "//div[@class='md-list-item-text ng-binding' and contains(text(),'VM class:')]")
-    WebElement machineTypeField;
+    public WebElement machineTypeField;
 
     @FindBy(xpath = "//div[@class='md-list-item-text ng-binding' and contains(text(),'Instance type:')]")
     WebElement instanceTypeField;

@@ -1,10 +1,8 @@
 package by.epamtc.automation.selenium.task4.page;
 
-import by.epamtc.automation.selenium.task4.page.EstimatePageTask4;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.ArrayList;
@@ -12,38 +10,35 @@ import java.util.ArrayList;
 public class TemporaryEmailPage {
 
     WebDriver driver;
-
+    public static final String TEMPORARY_MAIL_URL = "https://10minutemail.com";
+    public static final By MAIL_LOCATOR = By.xpath("//*[@id='mail_address']");
+    public static final By EXPECTED_MAIL_LOCATOR = By.xpath("//*[@id='mail_messages_content']//div[@class = 'small_message_icon_box']");
+    public static final By COST_FROM_MAIL_LOCATOR = By.xpath("//*[@id='mobilepadding']/td/h2");
 
     public TemporaryEmailPage(WebDriver driver) {
         this.driver = driver;
     }
 
-    @FindBy (xpath = "//input[@id='fe_text']")
-    WebElement mail;
-
-    @FindBy (xpath = "//*[@id='maillist']//a[text()='Google Cloud Platform Price Estimate']")
-    WebElement expectedMail;
-
-    @FindBy (xpath = "//*[@id='tab1']/div/div/table/tbody/tr[2]/td/table/tbody/tr[2]/td[2]/h3")
-    WebElement mailCost;
-
     public EstimatePageTask4 getEmail() {
-        driver.get("https://10minutemail.net");
-         new WebDriverWait(driver, 10)
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@id='fe_text']")));
-        new WebDriverWait(driver, 10).until(ExpectedConditions.attributeToBeNotEmpty(mail, "value"));
+        driver.get(TEMPORARY_MAIL_URL);
+        //через @FindBy почему-то выкидывает NullPointerException, приходится искать через константу типа By
+        WebElement mail = new WebDriverWait(driver, 20)
+                .until(ExpectedConditions.visibilityOfElementLocated(MAIL_LOCATOR));
+        new WebDriverWait(driver, 20).until(ExpectedConditions.attributeToBeNotEmpty(mail, "value"));
         String emailStringValue = mail.getAttribute("value");
         ArrayList<String> browserPages = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(browserPages.get(0));
         return new EstimatePageTask4(driver, emailStringValue);
     }
 
-    public String getCostOfLetter() {
-        new WebDriverWait(driver, 180)
-                .until(ExpectedConditions.elementToBeClickable(expectedMail));
+    public String getCostInLetter() {
+        WebElement expectedMail = new WebDriverWait(driver, 180)
+                .until(ExpectedConditions.elementToBeClickable(EXPECTED_MAIL_LOCATOR));
         expectedMail.click();
-         new WebDriverWait(driver, 20)
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='tab1']/div/div/table/tbody/tr[2]/td/table/tbody/tr[2]/td[2]/h3")));
-        return  mailCost.getText();
+        WebElement costFromMail = new WebDriverWait(driver, 20)
+                .until(ExpectedConditions.presenceOfElementLocated(COST_FROM_MAIL_LOCATOR));
+        String costInLetter = costFromMail.getText();
+        String[] array = costInLetter.split(":");
+        return  array[1].trim();
     }
 }

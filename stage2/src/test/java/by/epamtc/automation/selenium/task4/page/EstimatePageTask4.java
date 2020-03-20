@@ -14,7 +14,6 @@ public class EstimatePageTask4 {
 
     WebDriver driver;
     String email;
-    String pageCost;
 
     public EstimatePageTask4(WebDriver driver) {
         this.driver = driver;
@@ -39,7 +38,7 @@ public class EstimatePageTask4 {
     @FindBy (xpath = "//*[@id='input_395']")
     WebElement emailField;
 
-    @FindBy (xpath = "//*[@id='dialogContent_401']/form/md-dialog-actions/button[2]")
+    @FindBy (xpath = "//button[@aria-label='Send Email']")
     WebElement emailSendButton;
 
     public TemporaryEmailPage clickEmailEstimateButton() {
@@ -63,6 +62,4 @@ public class EstimatePageTask4 {
         driver.switchTo().window(browserPages.get(1));
         return new TemporaryEmailPage(driver);
     }
-
-
 }

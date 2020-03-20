@@ -30,17 +30,17 @@ public class SecondTaskTest {
 
     @Test
     public void browserPageTitleMatching() {
-        Assert.assertTrue(resultPage.findPageTitleText().equals(PASTE_TITLE));
+        Assert.assertEquals(PASTE_TITLE, resultPage.findPageTitleText());
     }
 
     @Test
     public void syntaxHighlightingMatching() {
-        Assert.assertTrue(resultPage.findSyntaxHighlightning().equals(PASTE_FORMAT));
+        Assert.assertEquals(resultPage.findSyntaxHighlightning(),PASTE_FORMAT);
     }
 
     @Test
     public void pasteCodeMatching() {
-        Assert.assertTrue(resultPage.findPasteCodeText().equals(PASTE_BODY));
+        Assert.assertEquals(PASTE_BODY, resultPage.findPasteCodeText());
     }
 
     @AfterClass(alwaysRun = true)
